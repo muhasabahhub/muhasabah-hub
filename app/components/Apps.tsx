@@ -145,8 +145,8 @@ export default function Apps() {
               className="-right-20 -top-20 opacity-10"
               size="w-[300px] h-[300px]"
             />
-            <div className="flex flex-col items-center relative">
-              <div>
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-10 relative">
+              <div className="flex-1">
                 <h3 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
                   Qadha Tracker
                 </h3>
@@ -164,11 +164,14 @@ export default function Apps() {
                     </span>
                   ))}
                 </div>
+                <div className="hidden lg:block mt-8">
+                  <StoreBadges />
+                </div>
               </div>
-              <div className="mt-10 flex justify-center">
+              <div className="mt-10 lg:mt-0 flex justify-center">
                 <PhoneMockup rotate="rotate-3" />
               </div>
-              <div className="mt-8">
+              <div className="mt-8 lg:hidden flex justify-center">
                 <StoreBadges />
               </div>
             </div>
