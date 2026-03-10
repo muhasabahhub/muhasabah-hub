@@ -43,13 +43,41 @@ function NotifyModal({
 }) {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   const handleSubmit = useCallback(
-    (e: React.FormEvent) => {
+    async (e: React.FormEvent) => {
       e.preventDefault();
-      setSubmitted(true);
+      setLoading(true);
+      setError(false);
+
+      try {
+        const response = await fetch("https://formspree.io/f/xaqpekbe", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            app: "Coming Soon App Waitlist",
+          }),
+        });
+
+        if (response.ok) {
+          setSubmitted(true);
+          setEmail("");
+        } else {
+          setError(true);
+        }
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     },
-    []
+    [email]
   );
 
   if (!open) return null;
@@ -81,8 +109,8 @@ function NotifyModal({
               </svg>
             </div>
             <h3 className="text-xl font-bold text-gray-900">You&apos;re on the list!</h3>
-            <p className="mt-2 text-sm text-gray-500">
-              We&apos;ll notify you when our next app launches.
+            <p className="mt-2 text-sm text-green-600">
+              We&apos;ll notify you when it launches.
             </p>
           </div>
         ) : (
@@ -102,11 +130,17 @@ function NotifyModal({
                 placeholder="Enter your email"
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green"
               />
+              {error && (
+                <p className="mt-2 text-sm text-red-600">
+                  Something went wrong. Please try again.
+                </p>
+              )}
               <button
                 type="submit"
-                className="mt-3 w-full px-6 py-3 text-sm font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors"
+                disabled={loading}
+                className="mt-3 w-full px-6 py-3 text-sm font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Notify Me
+                {loading ? "Submitting..." : "Notify Me"}
               </button>
             </form>
           </>
