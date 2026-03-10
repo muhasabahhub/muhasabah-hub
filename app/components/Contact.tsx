@@ -5,12 +5,40 @@ import SectionLabel from "./SectionLabel";
 import ScrollReveal from "./ScrollReveal";
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
-  const handleSubmit = useCallback((e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  }, []);
+  const handleSubmit = useCallback(
+    async (e: React.FormEvent) => {
+      e.preventDefault();
+      setStatus("loading");
+
+      try {
+        const res = await fetch("https://formspree.io/f/xvzwkykn", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({ name, email, message }),
+        });
+
+        if (res.ok) {
+          setStatus("success");
+          setName("");
+          setEmail("");
+          setMessage("");
+        } else {
+          setStatus("error");
+        }
+      } catch {
+        setStatus("error");
+      }
+    },
+    [name, email, message]
+  );
 
   return (
     <section id="contact" className="py-24 lg:py-32">
@@ -36,7 +64,7 @@ export default function Contact() {
 
           <ScrollReveal>
             <div className="mt-12 bg-gray-50 rounded-2xl p-8">
-              {submitted ? (
+              {status === "success" ? (
                 <div className="text-center py-8">
                   <div className="w-14 h-14 bg-brand-green/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a6b3c" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -44,10 +72,10 @@ export default function Contact() {
                     </svg>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    Message Sent!
+                    Thank you!
                   </h3>
-                  <p className="mt-2 text-sm text-gray-500">
-                    We&apos;ll get back to you soon, in sha Allah.
+                  <p className="mt-2 text-sm text-brand-green">
+                    We&apos;ll be in touch soon.
                   </p>
                 </div>
               ) : (
@@ -63,6 +91,8 @@ export default function Contact() {
                       type="text"
                       id="name"
                       required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green bg-white"
                       placeholder="Your name"
                     />
@@ -78,6 +108,8 @@ export default function Contact() {
                       type="email"
                       id="email"
                       required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green bg-white"
                       placeholder="your@email.com"
                     />
@@ -93,15 +125,23 @@ export default function Contact() {
                       id="message"
                       required
                       rows={4}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-green/30 focus:border-brand-green bg-white resize-none"
                       placeholder="How can we help?"
                     />
                   </div>
+                  {status === "error" && (
+                    <p className="text-sm text-red-600">
+                      Something went wrong. Please try again.
+                    </p>
+                  )}
                   <button
                     type="submit"
-                    className="w-full px-6 py-3.5 text-sm font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors"
+                    disabled={status === "loading"}
+                    className="w-full px-6 py-3.5 text-sm font-semibold text-white bg-gray-900 rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Send Message
+                    {status === "loading" ? "Sending..." : "Send Message"}
                   </button>
                 </form>
               )}
