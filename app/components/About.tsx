@@ -41,10 +41,10 @@ export default function About() {
         <ScrollReveal>
           <div className="max-w-2xl mx-auto text-center">
             <SectionLabel>Who We Are</SectionLabel>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
               Building with Purpose
             </h2>
-            <p className="mt-6 text-lg text-gray-500 leading-relaxed">
+            <p className="mt-6 text-lg text-gray-500 leading-relaxed text-left sm:text-center">
               Muhasabah — the Islamic practice of self-reflection — is at the
               heart of everything we build. Our apps are designed to help Muslims
               track, improve, and stay consistent in their worship and daily

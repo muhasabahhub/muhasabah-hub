@@ -36,34 +36,34 @@ export default function Hero() {
         size={16}
       />
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          <div className="max-w-xl">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-gray-900">
+      <div className="max-w-7xl mx-auto w-full">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div className="w-full px-6 lg:px-8">
+            <h1 className="text-5xl md:text-5xl lg:text-7xl font-extrabold tracking-tight leading-[1.1] text-gray-900">
               Apps Built for the{" "}
               <span className="text-brand-green">Muslim</span> Life Journey
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-500 leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg lg:text-xl text-gray-500 leading-relaxed">
               Beautiful, purposeful tools for self-improvement — rooted in
               Islamic values.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 relative z-10">
               <a
                 href="#apps"
-                className="inline-flex items-center px-8 py-3.5 text-sm font-semibold text-white bg-gray-900 rounded-full hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/20"
+                className="inline-flex items-center justify-center w-full sm:w-auto sm:min-w-[180px] px-8 py-3.5 text-sm font-semibold text-white bg-gray-900 rounded-full hover:bg-gray-800 transition-colors shadow-lg shadow-gray-900/20"
               >
                 Explore Our Apps
               </a>
               <a
                 href="#about"
-                className="inline-flex items-center px-8 py-3.5 text-sm font-semibold text-gray-900 border-2 border-gray-200 rounded-full hover:border-gray-300 hover:bg-gray-50 transition-colors"
+                className="inline-flex items-center justify-center w-full sm:w-auto sm:min-w-[180px] px-8 py-3.5 text-sm font-semibold text-gray-900 border-2 border-gray-200 rounded-full hover:border-gray-300 hover:bg-gray-50 transition-colors"
               >
                 Learn More
               </a>
             </div>
           </div>
 
-          <div className="relative flex justify-center lg:justify-end items-center">
+          <div className="flex justify-center lg:justify-end items-center max-w-[280px] lg:max-w-none mx-auto lg:mx-0">
             <PhoneMockup
               className="animate-float z-10"
               rotate="-rotate-6"

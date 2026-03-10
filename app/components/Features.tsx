@@ -74,7 +74,7 @@ export default function Features() {
         <ScrollReveal>
           <div className="text-center max-w-2xl mx-auto">
             <SectionLabel>Features</SectionLabel>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
               Everything You Need to Stay Consistent
             </h2>
           </div>

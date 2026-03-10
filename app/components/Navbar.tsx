@@ -57,7 +57,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 lg:h-16">
           <a href="#home" className="flex items-center gap-2">
             <CrescentIcon />
             <span className="text-lg font-bold tracking-tight text-gray-900">
@@ -86,59 +86,60 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 text-gray-600"
+            className="md:hidden relative w-8 h-8 flex items-center justify-center text-gray-600"
             aria-label="Toggle menu"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              {mobileOpen ? (
-                <>
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </>
-              ) : (
-                <>
-                  <line x1="3" y1="6" x2="21" y2="6" />
-                  <line x1="3" y1="12" x2="21" y2="12" />
-                  <line x1="3" y1="18" x2="21" y2="18" />
-                </>
-              )}
-            </svg>
+            <span
+              className={`absolute h-0.5 w-5 bg-current transition-all duration-300 ${
+                mobileOpen ? "rotate-45 translate-y-0" : "-translate-y-1.5"
+              }`}
+            />
+            <span
+              className={`absolute h-0.5 w-5 bg-current transition-all duration-300 ${
+                mobileOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
+              }`}
+            />
+            <span
+              className={`absolute h-0.5 w-5 bg-current transition-all duration-300 ${
+                mobileOpen ? "-rotate-45 translate-y-0" : "translate-y-1.5"
+              }`}
+            />
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-lg border-t border-gray-100">
-          <div className="px-6 py-4 space-y-3">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={closeMobile}
-                className="block text-sm font-medium text-gray-600 hover:text-gray-900 py-2"
-              >
-                {link.label}
-              </a>
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+          mobileOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <div className="bg-white/55 backdrop-blur-xl shadow-lg shadow-black/5 border-t border-white/50">
+          <div className="py-2">
+            {NAV_LINKS.map((link, i) => (
+              <div key={link.href}>
+                {i > 0 && <div className="mx-6 border-t border-gray-200/40" />}
+                <a
+                  href={link.href}
+                  onClick={closeMobile}
+                  className="block text-base font-medium text-gray-700 hover:text-brand-green hover:bg-brand-green/5 py-4 px-6 transition-colors"
+                >
+                  {link.label}
+                </a>
+              </div>
             ))}
-            <a
-              href="#apps"
-              onClick={closeMobile}
-              className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-gray-900 rounded-full hover:bg-gray-800 transition-colors"
-            >
-              Download App
-            </a>
+            <div className="mx-6 border-t border-gray-200/40" />
+            <div className="px-6 py-4">
+              <a
+                href="#apps"
+                onClick={closeMobile}
+                className="flex items-center justify-center w-full px-5 py-3 text-sm font-semibold text-white bg-gray-900/90 backdrop-blur-sm rounded-full hover:bg-gray-800 transition-colors"
+              >
+                Download App
+              </a>
+            </div>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }

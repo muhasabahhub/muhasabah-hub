@@ -13,38 +13,24 @@ const FEATURE_PILLS = [
   "Progress Stats",
 ];
 
-function AppStoreBadge() {
+function StoreBadges() {
   return (
-    <a
-      href="#"
-      className="inline-flex items-center gap-2 px-5 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors"
-    >
-      <svg width="20" height="24" viewBox="0 0 17 20" fill="currentColor">
-        <path d="M13.545 10.239c-.022-2.234 1.824-3.306 1.907-3.358-.038-.055-1.063-1.538-2.7-1.905-1.137-.12-2.238.672-2.82.672-.592 0-1.494-.66-2.467-.64-1.253.018-2.424.735-3.07 1.855-1.33 2.302-.34 5.692.94 7.554.638.912 1.387 1.93 2.368 1.895.961-.038 1.322-.613 2.482-.613 1.15 0 1.48.613 2.478.592 1.027-.017 1.668-.916 2.292-1.834.738-1.044 1.036-2.07 1.048-2.123-.023-.008-2.004-.766-2.024-3.057l-.434.962z" />
-        <path d="M11.2 3.28c.502-.635.848-1.5.752-2.38-.728.032-1.632.503-2.152 1.118-.462.548-.876 1.443-.768 2.286.816.062 1.656-.415 2.168-1.024z" />
-      </svg>
-      <div className="text-left">
-        <div className="text-[10px] leading-none opacity-80">Download on the</div>
-        <div className="text-sm font-semibold leading-tight">App Store</div>
-      </div>
-    </a>
-  );
-}
-
-function GooglePlayBadge() {
-  return (
-    <a
-      href="#"
-      className="inline-flex items-center gap-2 px-5 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-colors"
-    >
-      <svg width="20" height="22" viewBox="0 0 20 22" fill="currentColor">
-        <path d="M1 1.175v19.65L11.025 11 1 1.175zM14.15 8.05l-2.7 1.525L8.175 6.3l5.975-3.375-3.125 5.125zm.975.55L12.35 11l2.775 2.4L18.05 11l-2.925-2.4zm-3.75 3.95l2.7 1.525-5.975-3.375 3.275-3.275 2.7 5.125zM1 1.175L8.175 6.3l-7.175-5.125z" />
-      </svg>
-      <div className="text-left">
-        <div className="text-[10px] leading-none opacity-80">GET IT ON</div>
-        <div className="text-sm font-semibold leading-tight">Google Play</div>
-      </div>
-    </a>
+    <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+      <a href="#">
+        <img
+          src="/images/app-store-badge.svg.svg"
+          alt="Download on the App Store"
+          className="w-[160px] h-[58px] object-contain"
+        />
+      </a>
+      <a href="#">
+        <img
+          src="/images/google-play-badge.png.png"
+          alt="Get it on Google Play"
+          className="w-[160px] h-[58px] object-contain"
+        />
+      </a>
+    </div>
   );
 }
 
@@ -145,7 +131,7 @@ export default function Apps() {
         <ScrollReveal>
           <div className="text-center max-w-2xl mx-auto">
             <SectionLabel>Our Apps</SectionLabel>
-            <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
               Tools for the Journey
             </h2>
           </div>
@@ -159,7 +145,7 @@ export default function Apps() {
               className="-right-20 -top-20 opacity-10"
               size="w-[300px] h-[300px]"
             />
-            <div className="grid lg:grid-cols-2 gap-10 items-center relative">
+            <div className="flex flex-col items-center relative">
               <div>
                 <h3 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
                   Qadha Tracker
@@ -178,13 +164,12 @@ export default function Apps() {
                     </span>
                   ))}
                 </div>
-                <div className="mt-8 flex flex-wrap gap-3">
-                  <AppStoreBadge />
-                  <GooglePlayBadge />
-                </div>
               </div>
-              <div className="flex justify-center">
+              <div className="mt-10 flex justify-center">
                 <PhoneMockup rotate="rotate-3" />
+              </div>
+              <div className="mt-8">
+                <StoreBadges />
               </div>
             </div>
           </div>

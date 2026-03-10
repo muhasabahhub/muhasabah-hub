@@ -19,7 +19,7 @@ export default function Contact() {
           <ScrollReveal>
             <div className="text-center">
               <SectionLabel>Get In Touch</SectionLabel>
-              <h2 className="mt-4 text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-900">
+              <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-gray-900">
                 We&apos;d Love to Hear From You
               </h2>
               <p className="mt-4 text-gray-500">
