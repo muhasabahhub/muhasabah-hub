@@ -42,10 +42,8 @@ function VerifyEmailFlow({ oobCode }: { oobCode: string }) {
 
   const handleVerify = useCallback(async () => {
     try {
-      console.log("Calling applyActionCode...");
       const auth = getFirebaseAuth();
       await applyActionCode(auth, oobCode);
-      console.log("applyActionCode succeeded");
       setStatus("verified");
 
       attemptDeepLink("verify", "verified=true");
@@ -61,10 +59,7 @@ function VerifyEmailFlow({ oobCode }: { oobCode: string }) {
         clearTimeout(fallbackTimer);
         window.removeEventListener("pagehide", handlePageHide);
       };
-    } catch (error: unknown) {
-      const firebaseError = error as { code?: string; message?: string };
-      console.log("applyActionCode error code:", firebaseError.code);
-      console.log("applyActionCode error message:", firebaseError.message);
+    } catch {
       setStatus("error");
     }
   }, [oobCode]);
@@ -230,11 +225,6 @@ function AuthContent() {
 
   const mode = searchParams.get("mode");
   const oobCode = searchParams.get("oobCode");
-
-  console.log("Auth page params:", Object.fromEntries(searchParams.entries()));
-  console.log("Mode:", mode);
-  console.log("oobCode:", oobCode ? "present" : "missing");
-  console.log("Firebase config:", { projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID, authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN });
 
   if (!mode || !oobCode) {
     return (
