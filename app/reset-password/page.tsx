@@ -37,10 +37,10 @@ function ResetPasswordContent() {
               style={{ borderColor: "#222", borderTopColor: "#C9A84C" }}
             />
             <h1 className="text-xl font-semibold mb-3" style={{ color: "#C9A84C" }}>
-              Opening Muhasabah Hub...
+              Opening Qadha Tracker...
             </h1>
             <p className="text-sm leading-relaxed" style={{ color: "#999" }}>
-              Redirecting to the app to reset your password.
+              Redirecting to Qadha Tracker to complete your password reset.
             </p>
           </>
         ) : (
@@ -49,7 +49,7 @@ function ResetPasswordContent() {
               Reset Password
             </h1>
             <p className="text-sm leading-relaxed" style={{ color: "#999" }}>
-              The app could not be opened. Please make sure Muhasabah Hub is installed, then try again.
+              The app could not be opened. Please make sure Qadha Tracker is installed, then try again.
             </p>
           </>
         )}
@@ -69,7 +69,7 @@ export default function ResetPasswordPage() {
               style={{ borderColor: "#222", borderTopColor: "#C9A84C" }}
             />
             <h1 className="text-xl font-semibold" style={{ color: "#C9A84C" }}>
-              Opening Muhasabah Hub...
+              Opening Qadha Tracker...
             </h1>
           </div>
         </div>

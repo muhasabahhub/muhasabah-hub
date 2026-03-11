@@ -40,7 +40,7 @@ function VerifyContent() {
               Verifying your email...
             </h1>
             <p className="text-sm leading-relaxed" style={{ color: "#999" }}>
-              Redirecting to Muhasabah Hub app.
+              Redirecting to Qadha Tracker...
             </p>
           </>
         ) : (
@@ -49,7 +49,7 @@ function VerifyContent() {
               Email Verified
             </h1>
             <p className="text-sm leading-relaxed" style={{ color: "#999" }}>
-              Your email has been verified. You can return to the app.
+              Email verified! You can return to Qadha Tracker.
             </p>
           </>
         )}
