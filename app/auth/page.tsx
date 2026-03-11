@@ -42,8 +42,10 @@ function VerifyEmailFlow({ oobCode }: { oobCode: string }) {
 
   const handleVerify = useCallback(async () => {
     try {
+      console.log("Calling applyActionCode...");
       const auth = getFirebaseAuth();
       await applyActionCode(auth, oobCode);
+      console.log("applyActionCode succeeded");
       setStatus("verified");
 
       attemptDeepLink("verify", "verified=true");
@@ -59,7 +61,10 @@ function VerifyEmailFlow({ oobCode }: { oobCode: string }) {
         clearTimeout(fallbackTimer);
         window.removeEventListener("pagehide", handlePageHide);
       };
-    } catch {
+    } catch (error: unknown) {
+      const firebaseError = error as { code?: string; message?: string };
+      console.log("applyActionCode error code:", firebaseError.code);
+      console.log("applyActionCode error message:", firebaseError.message);
       setStatus("error");
     }
   }, [oobCode]);
@@ -226,6 +231,11 @@ function AuthContent() {
   const mode = searchParams.get("mode");
   const oobCode = searchParams.get("oobCode");
 
+  console.log("Auth page params:", Object.fromEntries(searchParams.entries()));
+  console.log("Mode:", mode);
+  console.log("oobCode:", oobCode ? "present" : "missing");
+  console.log("Firebase config:", { projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID, authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN });
+
   if (!mode || !oobCode) {
     return (
       <div
@@ -253,7 +263,7 @@ function AuthContent() {
       style={{ background: "#0a0a0a" }}
     >
       <div className="text-center max-w-[420px]">
-        {(mode === "verifyEmail" || mode === "recoverEmail") && (
+        {(mode === "verifyEmail" || mode === "recoverEmail" || mode === "verifyAndChangeEmail") && (
           <VerifyEmailFlow oobCode={oobCode} />
         )}
         {mode === "resetPassword" && (
@@ -261,6 +271,7 @@ function AuthContent() {
         )}
         {mode !== "verifyEmail" &&
           mode !== "recoverEmail" &&
+          mode !== "verifyAndChangeEmail" &&
           mode !== "resetPassword" && (
             <>
               <h1
