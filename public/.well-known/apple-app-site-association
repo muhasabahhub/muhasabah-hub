@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "A76B86AK78.com.muhasabah.qadhatracker",
+        "paths": [
+          "/verify",
+          "/reset-password",
+          "/qadhatracker/*"
+        ]
+      }
+    ]
+  }
+}
