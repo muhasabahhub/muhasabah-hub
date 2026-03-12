@@ -7,7 +7,8 @@
       "Bash(npm run:*)",
       "Bash(timeout 10 bash:*)",
       "Bash(npx tsc:*)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(find /c/Users/aslam/Desktop/muhasabah-hub/app -type f | grep -E \"\\\\.\\(tsx|ts|css\\)$\")"
     ]
   }
 }
