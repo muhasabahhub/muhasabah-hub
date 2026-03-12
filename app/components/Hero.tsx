@@ -10,12 +10,12 @@ export default function Hero() {
     >
       <GradientOrb
         color="green"
-        className="top-20 right-[10%] opacity-20"
+        className="top-20 -right-[20%] lg:right-[10%] opacity-20"
         size="w-[500px] h-[500px]"
       />
       <GradientOrb
         color="gold"
-        className="top-40 right-[25%] opacity-15"
+        className="top-40 -right-[5%] lg:right-[25%] opacity-15"
         size="w-[400px] h-[400px]"
       />
 
