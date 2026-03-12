@@ -28,7 +28,7 @@ export default function Hero() {
         size={20}
       />
       <DecorativeStar
-        className="absolute top-[340px] lg:top-auto lg:bottom-40 right-[5%] lg:right-[40%] text-brand-green/20 animate-spin-slow z-30"
+        className="absolute top-[310px] lg:top-auto lg:bottom-40 left-[5%] lg:left-auto lg:right-[40%] text-brand-green/20 animate-spin-slow z-30"
         size={28}
       />
       <DecorativeStar
