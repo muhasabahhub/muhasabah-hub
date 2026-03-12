@@ -20,7 +20,7 @@ export default function Hero() {
       />
 
       <DecorativeStar
-        className="absolute top-32 left-[15%] text-brand-green/30 animate-spin-slow"
+        className="absolute top-32 left-[70%] lg:left-[15%] text-brand-green/30 animate-spin-slow"
         size={32}
       />
       <DecorativeStar
@@ -28,7 +28,7 @@ export default function Hero() {
         size={20}
       />
       <DecorativeStar
-        className="absolute bottom-40 right-[40%] text-brand-green/20 animate-spin-slow"
+        className="absolute bottom-40 right-[10%] lg:right-[40%] text-brand-green/20 animate-spin-slow"
         size={28}
       />
       <DecorativeStar
